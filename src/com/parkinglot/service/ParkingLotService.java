@@ -1,5 +1,6 @@
 package com.parkinglot.service;
 
+import com.parkinglot.constants.MessageConstants;
 import com.parkinglot.models.ParkingLot;
 import com.parkinglot.models.ParkingTicket;
 import com.parkinglot.models.Vehicle;
@@ -47,9 +48,7 @@ public class ParkingLotService {
         StringBuffer response = new StringBuffer();
 
         for(Map.Entry<Integer,List<Integer>> entry : freeSlots.entrySet()) {
-            response.append(String.format(MessageConstants.FREE_SLOTS,vehicleType.toString(),entry.getKey()));
-            for(int slot : entry.getValue()) response.append(slot + MessageConstants.COMMA_DELIMITER);
-            response.setLength(response.length()-1);
+            response.append(String.format(MessageConstants.FREE_SLOTS,vehicleType.toString(),entry.getKey(),entry.getValue().toString()));
             response.append("\n");
         }
 
@@ -64,9 +63,7 @@ public class ParkingLotService {
         StringBuffer response = new StringBuffer();
 
         for(Map.Entry<Integer,List<Integer>> entry : occupiedSlots.entrySet()) {
-            response.append(String.format(MessageConstants.OCCUPIED_SLOTS,vehicleType.toString(),entry.getKey()));
-            for(int slot : entry.getValue()) response.append(slot + MessageConstants.COMMA_DELIMITER);
-            response.setLength(response.length()-1);
+            response.append(String.format(MessageConstants.OCCUPIED_SLOTS,vehicleType.toString(),entry.getKey(),entry.getValue().toString()));
             response.append("\n");
         }
 
